@@ -1,6 +1,6 @@
 Holzspan-Android - KI_Info
 ==========================
-Stand: 27.11.2026
+Stand: 27.11.2026 (Build auf Zweig apk umgestellt)
 
 ZIEL
 Eigene Android-App "Holzspan": Fraeswerte fuer Holz auf der eigenen CNC,
@@ -57,10 +57,18 @@ TECHNIK (bestaetigt 27.11.2026)
 - Kotlin 2.1, Jetpack Compose (BOM 2024.12.01), Material 3, AGP 8.7.3
 - Paket de.ossi.holzspan, minSdk 26, targetSdk 35
 - Kein Gradle-Wrapper im Repo: GitHub Actions nutzt Gradle 8.11.1
-- Fester Debug-Schluessel app/debug.keystore (Passwort android), damit
-  Updates ueber die alte Version installiert werden koennen
-- Workflow .github/workflows/build.yml baut bei jedem Push auf main
-  und legt Holzspan.apk ins Release "neueste"
+- Feste Signatur app/holzspan.jks (Passwort android, Alias
+  androiddebugkey), damit Updates ueber die alte Version gehen
+- versionCode = Build-Nummer, versionName = 1.0.<Build>
+- Workflow .github/workflows/build.yml (nach GitHub-Gesamt-KI_Info
+  Abschnitt 4): assembleRelease, legt app.apk + version.txt
+  ("Version 1.0.<Nr> (Build <Nr>)") in Zweig "apk" -> Projekt-Zentrale
+  zeigt Installieren. upload-artifact mit continue-on-error + retention-days 1.
+  Reine .md/.txt-Aenderungen bauen nicht neu.
+- Repo-Einstellung "Artefakte 1 Tag" konnte Claude nicht setzen (Proxy
+  sperrt den API-Pfad); am PC einmal:
+  gh api -X PUT repos/Eggaossi/Holzspan-Android/actions/permissions/artifact-and-log-retention -F days=1
+- Altes Release "neueste" (Build 3) ist ueberholt, kann geloescht werden.
 
 DATEIEN
 - Daten.kt: Holzarten, Fraesertypen, Bearbeitungen, Steifigkeit,
@@ -76,8 +84,9 @@ DESIGN (gewaehlt 27.11.2026)
   wie ein Holzbrett mit Gravur.
 
 OFFEN
-- Ersten Build pruefen, auf dem Handy testen
-  (Build 1+2 scheiterten an setup-android; Schritt entfernt, SDK ist vorinstalliert)
+- Auf dem Handy testen (Build 1+2 scheiterten an setup-android, Schritt
+  entfernt; Build 3 gruen, aber noch ohne Zweig apk)
+- Icon nach Regel KI_Allgemein (PNG, kein adaptives Icon) - Vorschau zeigen
 - Naechste Schritte: Werkzeugliste (Schritt 3), Leistung/Durchbiegung
   (Schritt 4), Optimierer, Relief-Modul ausbauen, Laufzeit aus G-Code
 - KI_Allgemein-Regeln konnten in dieser Sitzung nicht gelesen werden

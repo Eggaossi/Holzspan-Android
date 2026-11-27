@@ -12,15 +12,17 @@ android {
         applicationId = "de.ossi.holzspan"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1"
+        // versionCode = Build-Nummer von GitHub, versionName = 1.0.<Build>
+        val buildNr = (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInt()
+        versionCode = buildNr
+        versionName = "1.0.$buildNr"
     }
 
-    // Fester Debug-Schluessel im Repo: so lassen sich neue Versionen
+    // Feste Signatur im Repo: so lassen sich neue Versionen
     // ueber die alte installieren, ohne vorher zu deinstallieren.
     signingConfigs {
-        getByName("debug") {
-            storeFile = file("debug.keystore")
+        create("holzspan") {
+            storeFile = file("holzspan.jks")
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"
@@ -28,8 +30,12 @@ android {
     }
 
     buildTypes {
+        release {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("holzspan")
+        }
         debug {
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("holzspan")
         }
     }
 

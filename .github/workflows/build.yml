@@ -3,6 +3,7 @@ name: APK bauen
 on:
   push:
     branches: [main]
+    paths-ignore: ['**.md', '**.txt']
   workflow_dispatch:
 
 permissions:
@@ -27,21 +28,26 @@ jobs:
           gradle-version: 8.11.1
 
       - name: APK bauen
-        run: gradle assembleDebug --no-daemon
+        run: gradle assembleRelease --no-daemon
 
-      - name: APK umbenennen
-        run: cp app/build/outputs/apk/debug/app-debug.apk Holzspan.apk
+      - name: APK bereitlegen
+        run: |
+          mkdir -p out
+          cp app/build/outputs/apk/release/app-release.apk out/app.apk
+          echo "Version 1.0.${{ github.run_number }} (Build ${{ github.run_number }})" > out/version.txt
 
+      # Regel KI_Allgemein: Artefakt-Schritt nie blockierend, 1 Tag Aufbewahrung
       - uses: actions/upload-artifact@v4
+        continue-on-error: true
         with:
-          name: Holzspan-APK
-          path: Holzspan.apk
+          name: Holzspan-${{ github.run_number }}
+          path: out/app.apk
+          retention-days: 1
 
-      - name: Als Release "neueste" veroeffentlichen
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: neueste
-          name: Holzspan neueste Version
-          body: "Automatisch gebaut aus ${{ github.sha }}"
-          files: Holzspan.apk
-          make_latest: true
+      - name: In Zweig apk legen (fuer die Projekt-Zentrale)
+        run: |
+          cd out
+          git init -q -b apk
+          git add app.apk version.txt
+          git -c user.name="github-actions" -c user.email="actions@github.com" commit -q -m "Build ${{ github.run_number }} von ${{ github.sha }}"
+          git push -q --force https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git apk
