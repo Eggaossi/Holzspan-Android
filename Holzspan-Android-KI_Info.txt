@@ -1,0 +1,54 @@
+Holzspan-Android - KI_Info
+==========================
+Stand: 27.11.2026
+
+ZIEL
+Eigene Android-App "Holzspan": Fraeswerte fuer Holz auf der eigenen CNC,
+nach dem Vorbild G-Wizard, aber fuers Handy, offline, auf Deutsch, und mit
+starkem Relief-Teil. Die App soll SCHOEN sein (wichtig fuer Ossi).
+
+MASCHINE DES NUTZERS
+- Steuerung: OpenBuilds BlackBox X32 (GRBL), Software OpenBuilds CONTROL
+- CAM: Vectric Aspire 12
+
+GEPLANTE FUNKTIONEN (Reihenfolge = Bau-Reihenfolge)
+1. Grundrechner: Fraeser + Holzart -> Drehzahl, Vorschub, Zustelltiefe,
+   seitliche Zustellung. Grundlage: Hersteller-Chiploadtabellen (Freud,
+   IDC, Amana) + Haertefaktor je Holzart (Janka).
+2. Maschinenprofil: Spindelleistung, Drehzahlbereich, Steifigkeit
+   (leicht/mittel/steif), GRBL-Grenzen $110-$112, $120-$122, $30.
+   Ergebnisse werden darauf begrenzt, mit Warnung.
+3. Werkzeugliste: Schaftfraeser (Upcut/Downcut/Kompression), Kugelfraeser,
+   konischer Kugelfraeser, V-Fraeser; Durchmesser, Schneiden, Ausspannlaenge.
+4. Rechner wie G-Wizard: Spanausduennung, wirksamer Durchmesser Kugelfraeser,
+   benoetigte Leistung, Durchbiegung, Brandgefahr-Warnung.
+5. Optimierer: schnellste Kombination Zustelltiefe/seitliche Zustellung
+   innerhalb der Grenzen.
+6. Relief-Modul: gewuenschte Rillenhoehe -> seitliche Zustellung,
+   Vorschlag Schruppen/Schlichten.
+7. Laufzeit aus G-Code-Datei (wie GRBL mit Beschleunigung und
+   Eckgeschwindigkeit), lernender Korrekturfaktor aus echten Zeiten.
+8. Logbuch fuer funktionierende Werte; spaeter Export nach Aspire (.vtdb).
+
+WICHTIGE FORMELN
+- Vorschub = Drehzahl x Schneiden x Spandicke
+- Rillenhoehe h = R - sqrt(R^2 - (s/2)^2); s = 2*sqrt(2Rh - h^2)
+- Wirksamer Durchmesser Kugelfraeser: ED = 2*sqrt(R^2 - (R - Tiefe)^2)
+- Chipload bei Schnitttiefe 2xD -25 %, 3xD -50 %
+
+DATENQUELLEN (nur als Orientierung, eigene Werte ableiten)
+- Freud Chipload-Tabelle (Weichholz/Hartholz/MDF/Sperrholz, 1/8"-1/2")
+- IDC Woodcraft, Amana 3D-Profiling, Sorotec Schnittwerte
+- Formeln frei: Better Tool Library (MIT), FreeCAD FeedsAndSpeeds (LGPL)
+
+TECHNIK (Vorschlag, noch zu bestaetigen)
+- Kotlin + Jetpack Compose, Material 3, eigenes Holz-Design
+- Daten lokal (Room), komplett offline
+- APK-Bau ueber GitHub Actions, damit am Handy installierbar
+
+STAND
+- 27.11.2026: Repo angelegt, Konzept festgelegt, noch kein Code.
+
+OFFEN
+- Design-Richtung bestaetigen lassen
+- KI_Allgemein-Regeln konnten in dieser Sitzung nicht gelesen werden
