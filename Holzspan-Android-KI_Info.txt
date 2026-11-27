@@ -49,6 +49,10 @@ TECHNIK (Vorschlag, noch zu bestaetigen)
 STAND
 - 27.11.2026: Repo angelegt, Konzept festgelegt, noch kein Code.
 
+DESIGN (gewaehlt 27.11.2026)
+- "Helles Holz": heller Ahorn-/Birkenton, ruhig und modern,
+  wie ein Holzbrett mit Gravur.
+
 OFFEN
-- Design-Richtung bestaetigen lassen
+- Technik (Kotlin/Compose + APK ueber GitHub Actions) bestaetigen lassen
 - KI_Allgemein-Regeln konnten in dieser Sitzung nicht gelesen werden
