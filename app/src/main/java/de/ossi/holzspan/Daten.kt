@@ -20,20 +20,20 @@ data class Holzart(
 )
 
 val HOLZARTEN = listOf(
-    Holzart("Linde", Gruppe.WEICH, 1.10, "Sehr gut fuer Reliefs, feine Details"),
-    Holzart("Pappel", Gruppe.WEICH, 1.05, "Gut fuer Reliefs, leicht faserig"),
-    Holzart("Zirbe", Gruppe.WEICH, 1.10, "Weich, Aeste vorsichtig fraesen"),
-    Holzart("Fichte / Kiefer", Gruppe.WEICH, 1.00, "Harzig, Jahresringe reissen gern aus"),
-    Holzart("Erle", Gruppe.WEICH, 0.95, "Gleichmaessig, gut fuer Reliefs"),
-    Holzart("Nussbaum", Gruppe.HART, 1.05, "Sehr schoen fuer Reliefs"),
+    Holzart("Linde", Gruppe.WEICH, 1.10, "Sehr gut für Reliefs, feine Details"),
+    Holzart("Pappel", Gruppe.WEICH, 1.05, "Gut für Reliefs, leicht faserig"),
+    Holzart("Zirbe", Gruppe.WEICH, 1.10, "Weich, Äste vorsichtig fräsen"),
+    Holzart("Fichte / Kiefer", Gruppe.WEICH, 1.00, "Harzig, Jahresringe reißen gern aus"),
+    Holzart("Erle", Gruppe.WEICH, 0.95, "Gleichmäßig, gut für Reliefs"),
+    Holzart("Nussbaum", Gruppe.HART, 1.05, "Sehr schön für Reliefs"),
     Holzart("Kirsche", Gruppe.HART, 1.00, "Feinporig, neigt zu Brandspuren"),
     Holzart("Ahorn", Gruppe.HART, 0.90, "Hart, Brandspuren bei zu wenig Vorschub"),
-    Holzart("Buche", Gruppe.HART, 0.90, "Hart, gedaempft besser fuer Reliefs"),
-    Holzart("Eiche", Gruppe.HART, 0.95, "Grobporig, fuer feine Details schlecht"),
-    Holzart("Esche", Gruppe.HART, 0.90, "Grobporig, zaeh"),
+    Holzart("Buche", Gruppe.HART, 0.90, "Hart, gedämpft besser für Reliefs"),
+    Holzart("Eiche", Gruppe.HART, 0.95, "Grobporig, für feine Details schlecht"),
+    Holzart("Esche", Gruppe.HART, 0.90, "Grobporig, zäh"),
     Holzart("MDF", Gruppe.MDF, 1.00, "Viel Staub, Absaugung wichtig"),
-    Holzart("Multiplex Birke", Gruppe.SPERRHOLZ, 1.00, "Kompressionsfraeser fuer saubere Kanten"),
-    Holzart("Pappel-Sperrholz", Gruppe.SPERRHOLZ, 1.10, "Weich, Deckschicht reisst leicht aus"),
+    Holzart("Multiplex Birke", Gruppe.SPERRHOLZ, 1.00, "Kompressionsfräser für saubere Kanten"),
+    Holzart("Pappel-Sperrholz", Gruppe.SPERRHOLZ, 1.10, "Weich, Deckschicht reißt leicht aus"),
 )
 
 enum class FraeserTyp(val titel: String) {
@@ -51,8 +51,8 @@ enum class Bearbeitung(val titel: String) {
 }
 
 enum class Steifigkeit(val titel: String, val faktor: Double, val beschreibung: String) {
-    LEICHT("Leicht", 0.30, "Hobby-Fraese mit Riemen oder Alu-Profil"),
-    MITTEL("Mittel", 0.45, "Stabile Hobby-Fraese mit Spindeln"),
+    LEICHT("Leicht", 0.30, "Hobby-Fräse mit Riemen oder Alu-Profil"),
+    MITTEL("Mittel", 0.45, "Stabile Hobby-Fräse mit Spindeln"),
     STEIF("Steif", 0.70, "Stahl- oder Gussrahmen"),
 }
 

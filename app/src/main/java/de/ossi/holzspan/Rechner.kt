@@ -86,15 +86,15 @@ fun berechne(e: Eingabe): Ergebnis {
         // dick genug bleibt (duenne Spaene = Reibung = Brandspuren)
         vorschub = m.vorschubMax.toDouble()
         drehzahl = max(m.drehzahlMin.toDouble(), vorschub / (e.schneiden * spandicke * ausduennung))
-        tipps += "Vorschub auf Maschinen-Maximum begrenzt, Drehzahl dafuer gesenkt."
+        tipps += "Vorschub auf Maschinen-Maximum begrenzt, Drehzahl dafür gesenkt."
     }
     val echteSpandicke = vorschub / (drehzahl * e.schneiden * ausduennung)
     if (echteSpandicke < spandicke * 0.6) {
-        warnungen += "Brandgefahr: Span zu duenn, weil die Maschine nicht schneller fahren kann. " +
-            "Weniger Schneiden oder kleineren Fraeser nehmen."
+        warnungen += "Brandgefahr: Span zu dünn, weil die Maschine nicht schneller fahren kann. " +
+            "Weniger Schneiden oder kleineren Fräser nehmen."
     }
     if (echteSpandicke < 0.02) {
-        warnungen += "Sehr duenner Span (unter 0,02 mm): Fraeser reibt eher als er schneidet."
+        warnungen += "Sehr dünner Span (unter 0,02 mm): Fräser reibt eher als er schneidet."
     }
 
     val eintauchen = vorschub * (if (e.typ == FraeserTyp.KUGEL) 0.5 else 0.33)
@@ -106,21 +106,21 @@ fun berechne(e: Eingabe): Ergebnis {
     } else null
 
     // 6) Warnungen und Tipps
-    if (d <= 3.2) warnungen += "Kleiner Fraeser: bricht leicht. Erst mit einem Probestueck testen."
+    if (d <= 3.2) warnungen += "Kleiner Fräser: bricht leicht. Erst mit einem Probestück testen."
     if (e.typ == FraeserTyp.KUGEL && e.bearbeitung != Bearbeitung.RELIEF) {
-        tipps += "Kugelfraeser sind zum Schlichten gedacht. Zum Schruppen besser Schaftfraeser."
+        tipps += "Kugelfräser sind zum Schlichten gedacht. Zum Schruppen besser Schaftfräser."
     }
     if (e.typ != FraeserTyp.KUGEL && e.bearbeitung == Bearbeitung.RELIEF) {
-        tipps += "Fuer schoene Reliefs zum Schlichten einen Kugelfraeser nehmen."
+        tipps += "Für schöne Reliefs zum Schlichten einen Kugelfräser nehmen."
     }
     when (e.typ) {
-        FraeserTyp.DOWNCUT -> tipps += "Downcut: saubere Oberkante, aber Spaene bleiben in der Nut. Nicht zu tief zustellen."
+        FraeserTyp.DOWNCUT -> tipps += "Downcut: saubere Oberkante, aber Späne bleiben in der Nut. Nicht zu tief zustellen."
         FraeserTyp.KOMPRESSION -> tipps += "Kompression: erste Zustellung tiefer als der Upcut-Teil, sonst keine saubere Oberkante."
         else -> {}
     }
     if (e.bearbeitung == Bearbeitung.RELIEF) {
-        tipps += "Schlichten etwa 45 Grad zur Faser fraesen, dann reisst weniger aus."
-        tipps += "Weniger seitliche Zustellung = glatter, aber deutlich laenger."
+        tipps += "Schlichten etwa 45 Grad zur Faser fräsen, dann reißt weniger aus."
+        tipps += "Weniger seitliche Zustellung = glatter, aber deutlich länger."
     }
     tipps += e.holz.hinweis
 

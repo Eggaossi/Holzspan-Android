@@ -1,6 +1,6 @@
 Holzspan-Android - KI_Info
 ==========================
-Stand: 27.11.2026 (Build auf Zweig apk umgestellt)
+Stand: 27.11.2026 (Kompakt-Seite)
 
 ZIEL
 Eigene Android-App "Holzspan": Fraeswerte fuer Holz auf der eigenen CNC,
@@ -76,15 +76,22 @@ DATEIEN
 - Rechner.kt: Berechnung (Spandicke, Zustellung, Spanausduennung,
   Begrenzung auf Maschine, Rillenhoehe, Warnungen, Tipps)
 - ui/Theme.kt: Farben "Helles Holz"
-- ui/RechnerScreen.kt: Hauptseite (Fraeser, Holz, Bearbeitung,
-  Ergebnis, Maschine; Maschinenwerte in SharedPreferences gespeichert)
+- ui/RechnerScreen.kt: EINE Seite ohne Scrollen (Wunsch Nutzer 27.11.2026
+  "gewaltig kompakt"): Kopfzeile mit Knopf "Maschine" (Dialog, Werte in
+  SharedPreferences), Ergebnis-Karte 3x2 Werte oben, Eingaben als
+  Ausklapp-Felder (Fraeser/Durchmesser/Schneiden, Holz/Bearbeitung),
+  max. 2 Hinweiszeilen (Warnungen zuerst, Antippen = alle).
+- Texte in der App mit echten Umlauten (Umlaut-Regel gilt nur fuer
+  Arduino-GFX-Fonts, nicht fuer Android).
 
 DESIGN (gewaehlt 27.11.2026)
 - "Helles Holz": heller Ahorn-/Birkenton, ruhig und modern,
   wie ein Holzbrett mit Gravur.
 
 OFFEN
-- Auf dem Handy testen (Build 1+2 scheiterten an setup-android, Schritt
+- Build 4 am Handy GETESTET 27.11.2026 (laeuft, Design gefaellt, war zu
+  lang -> Kompakt-Seite gebaut, noch nicht am Handy gesehen)
+- Fruehere Builds: (Build 1+2 scheiterten an setup-android, Schritt
   entfernt; Build 3 gruen, aber noch ohne Zweig apk)
 - Icon nach Regel KI_Allgemein (PNG, kein adaptives Icon) - Vorschau zeigen
 - Naechste Schritte: Werkzeugliste (Schritt 3), Leistung/Durchbiegung
