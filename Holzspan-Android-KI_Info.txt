@@ -77,6 +77,7 @@ DESIGN (gewaehlt 27.11.2026)
 
 OFFEN
 - Ersten Build pruefen, auf dem Handy testen
+  (Build 1+2 scheiterten an setup-android; Schritt entfernt, SDK ist vorinstalliert)
 - Naechste Schritte: Werkzeugliste (Schritt 3), Leistung/Durchbiegung
   (Schritt 4), Optimierer, Relief-Modul ausbauen, Laufzeit aus G-Code
 - KI_Allgemein-Regeln konnten in dieser Sitzung nicht gelesen werden
